@@ -1,0 +1,24 @@
+name: 'TF Plan Comment'
+description: 'Post a readable, auto-updating Terraform plan summary as a PR comment'
+author: 'patrickmackin'
+
+inputs:
+  plan-json-path:
+    description: 'Path to the Terraform plan JSON file (from terraform show -json planfile)'
+    required: true
+  github-token:
+    description: 'GitHub token for posting comments'
+    required: false
+    default: ${{ github.token }}
+  comment-marker:
+    description: 'Hidden HTML marker used to identify and update the same comment on subsequent runs'
+    required: false
+    default: '<!-- tf-plan-comment -->'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
+
+branding:
+  icon: 'cloud'
+  color: 'purple'

@@ -1,0 +1,30 @@
+{
+  "name": "tf-plan-comment",
+  "version": "1.0.0",
+  "description": "Post a readable Terraform plan summary as a PR comment",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "ncc build src/main.ts -o dist --source-map --license licenses.txt",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit",
+    "all": "npm run lint && npm run test && npm run build"
+  },
+  "keywords": [
+    "terraform",
+    "github-actions",
+    "pull-request",
+    "plan"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@actions/github": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@vercel/ncc": "^0.38.3",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
