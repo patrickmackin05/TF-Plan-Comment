@@ -4,22 +4,11 @@ A zero-infrastructure GitHub Action that parses `terraform show -json` output an
 
 No server. No dashboard. No extra secrets. Just add a few lines to your workflow.
 
+![Terraform plan comment on a PR](docs/screenshot.png)
+
 ## What you get
 
-Every PR that touches Terraform gets a comment like this:
-
-> **Terraform Plan Summary**
->
-> 🟢 **3** to add · 🟡 **1** to change · 🔴 **1** to destroy
->
-> ⚠️ **Destructive changes detected** — review carefully before merging.
->
-> <details>
-> <summary>🔴 `aws_security_group.old` — Delete</summary>
-> ...
-> </details>
-
-Each resource is in a collapsible section with attribute-level diffs for updates (`old → new`). The same comment is updated on every push — no spam.
+Every PR that touches Terraform gets a clean, auto-updating plan summary — collapsible sections per resource, attribute-level diffs for updates (`old → new`), and a summary line at the top. The same comment is updated on every push, so no spam.
 
 ## Quick start
 
@@ -55,7 +44,7 @@ jobs:
       - name: Export plan JSON
         run: terraform show -json tfplan > plan.json
 
-      - uses: patrickmackin/tf-plan-comment@v1
+      - uses: patrickmackin05/TF-Plan-Comment@v1
         with:
           plan-json-path: plan.json
 ```
